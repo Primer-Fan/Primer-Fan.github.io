@@ -22,29 +22,33 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了） 删除Ubuntu18.04（同时适用于Manjaro） 在Windows磁盘管理下，删除Ubuntu的所有分区 删除Ubuntu引导文件不知道自己Ubuntu引导文件在哪的可以用easyUEFI查看一下 挂载EFI分区用管理员身份打开命令提示符输入以下命令并回车123456diskpa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro KDE + Win10 双系统安装与基本配置">
+<meta property="og:url" content="http://yoursite.com/2020/08/23/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了） 删除Ubuntu18.04（同时适用于Manjaro） 在Windows磁盘管理下，删除Ubuntu的所有分区 删除Ubuntu引导文件不知道自己Ubuntu引导文件在哪的可以用easyUEFI查看一下 挂载EFI分区用管理员身份打开命令提示符输入以下命令并回车123456diskpa">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-23T14:17:38.000Z">
+<meta property="article:modified_time" content="2020-08-23T17:09:05.548Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/08/23/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Hexo</title>
+  <title>Manjaro KDE + Win10 双系统安装与基本配置 | Hexo</title>
   
 
 
@@ -132,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -144,6 +148,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4Ubuntu18-04%EF%BC%88%E5%90%8C%E6%97%B6%E9%80%82%E7%94%A8%E4%BA%8EManjaro%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">删除Ubuntu18.04（同时适用于Manjaro）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Manjaro-KDE%E5%8F%8C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">安装Manjaro KDE双系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manjaro%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Manjaro系统设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BE%8E%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">美化</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -184,11 +189,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -207,10 +213,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Manjaro KDE + Win10 双系统安装与基本配置</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Manjaro KDE + Win10 双系统安装与基本配置
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -238,7 +243,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）</p>
+        <p>看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）</p>
 <h1 id="删除Ubuntu18-04（同时适用于Manjaro）"><a href="#删除Ubuntu18-04（同时适用于Manjaro）" class="headerlink" title="删除Ubuntu18.04（同时适用于Manjaro）"></a>删除Ubuntu18.04（同时适用于Manjaro）</h1><ol>
 <li>在Windows磁盘管理下，删除Ubuntu的所有分区</li>
 <li>删除Ubuntu引导文件<br>不知道自己Ubuntu引导文件在哪的可以用easyUEFI查看一下<ol>
@@ -314,7 +319,6 @@
 <li>window management -&gt; window behavior -&gt; advanced -&gt; window placement 设置为 centered</li>
 </ul>
 
-      
     </div>
 
     
@@ -322,295 +326,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/22/hexo-test/" rel="prev" title="hexo test">
+                  <i class="fa fa-chevron-left"></i> hexo test
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/hexo-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/hexo-test/" class="post-title-link" itemprop="url">hexo test</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-22 21:34:45" itemprop="dateCreated datePublished" datetime="2020-08-22T21:34:45+08:00">2020-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-23 14:11:35" itemprop="dateModified" datetime="2020-08-23T14:11:35+08:00">2020-08-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Welcome-to-Leanote-欢迎来到Leanote"><a href="#Welcome-to-Leanote-欢迎来到Leanote" class="headerlink" title="Welcome to Leanote! 欢迎来到Leanote!"></a>Welcome to Leanote! 欢迎来到Leanote!</h1><h2 id="1-排版"><a href="#1-排版" class="headerlink" title="1. 排版"></a>1. 排版</h2><p><strong>粗体</strong> <em>斜体</em> </p>
-<p><del>这是一段错误的文本。</del></p>
-<p>引用:</p>
-<blockquote>
-<p>引用Leanote官方的话, 为什么要做Leanote, 原因是…</p>
-</blockquote>
-<p>有充列表:</p>
-<ol>
-<li>支持Vim</li>
-<li>支持Emacs</li>
-</ol>
-<p>无序列表:</p>
-<ul>
-<li>项目1</li>
-<li>项目2</li>
-</ul>
-<h2 id="2-图片与链接"><a href="#2-图片与链接" class="headerlink" title="2. 图片与链接"></a>2. 图片与链接</h2><p>图片:<br><img src="http://leanote.com/images/logo/leanote_icon_blue.png" alt="leanote"><br>链接:</p>
-<p><a target="_blank" rel="noopener" href="http://leanote.leanote.com/">这是去往Leanote官方博客的链接</a></p>
-<h2 id="3-标题"><a href="#3-标题" class="headerlink" title="3. 标题"></a>3. 标题</h2><p>以下是各级标题, 最多支持5级标题</p>
-<h1 id="h1"><a href="#h1" class="headerlink" title="h1"></a>h1</h1><h2 id="h2"><a href="#h2" class="headerlink" title="h2"></a>h2</h2><h3 id="h3"><a href="#h3" class="headerlink" title="h3"></a>h3</h3><h4 id="h4"><a href="#h4" class="headerlink" title="h4"></a>h4</h4><h5 id="h4-1"><a href="#h4-1" class="headerlink" title="h4"></a>h4</h5><h6 id="h5"><a href="#h5" class="headerlink" title="h5"></a>h5</h6><h2 id="4-代码"><a href="#4-代码" class="headerlink" title="4. 代码"></a>4. 代码</h2><p>示例:</p>
-<pre><code>function get(key) &#123;
-    return m[key];
-&#125;</code></pre>
-<p>代码高亮示例:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* nth element in the fibonacci series.</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>n &gt;= 0</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return </span>the nth element, &gt;= 0.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> tmp;</span><br><span class="line">  <span class="keyword">while</span> (--n &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    tmp = a;</span><br><span class="line">    a += b;</span><br><span class="line">    b = tmp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.write(fib(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span>:</span></span><br><span class="line">   empCount = <span class="number">0</span></span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, salary</span>):</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.salary = salary</span><br><span class="line">        Employee.empCount += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="5-Markdown-扩展"><a href="#5-Markdown-扩展" class="headerlink" title="5. Markdown 扩展"></a>5. Markdown 扩展</h1><p>Markdown 扩展支持:</p>
-<ul>
-<li>表格</li>
-<li>定义型列表</li>
-<li>Html 标签</li>
-<li>脚注</li>
-<li>目录</li>
-<li>时序图与流程图</li>
-<li>MathJax 公式</li>
-</ul>
-<h2 id="5-1-表格"><a href="#5-1-表格" class="headerlink" title="5.1 表格"></a>5.1 表格</h2><table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody></table>
-<p>可以指定对齐方式, 如Item列左对齐, Value列右对齐, Qty列居中对齐</p>
-<table>
-<thead>
-<tr>
-<th align="left">Item</th>
-<th align="right">Value</th>
-<th align="center">Qty</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Computer</td>
-<td align="right">$1600</td>
-<td align="center">5</td>
-</tr>
-<tr>
-<td align="left">Phone</td>
-<td align="right">$12</td>
-<td align="center">12</td>
-</tr>
-<tr>
-<td align="left">Pipe</td>
-<td align="right">$1</td>
-<td align="center">234</td>
-</tr>
-</tbody></table>
-<h2 id="5-2-定义型列表"><a href="#5-2-定义型列表" class="headerlink" title="5.2 定义型列表"></a>5.2 定义型列表</h2><dl><dt>名词 1</dt><dd>定义 1（左侧有一个可见的冒号和四个不可见的空格）</dd></dl><dl><dt>代码块 2</dt><dd>这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）</dd></dl><pre><code>    代码块（左侧有八个不可见的空格）</code></pre>
-<h2 id="5-3-Html-标签"><a href="#5-3-Html-标签" class="headerlink" title="5.3 Html 标签"></a>5.3 Html 标签</h2><p>支持在 Markdown 语法中嵌套 Html 标签，譬如，你可以用 Html 写一个纵跨两行的表格：</p>
-<pre><code>&lt;table&gt;
-    &lt;tr&gt;
-        &lt;th rowspan=&quot;2&quot;&gt;值班人员&lt;/th&gt;
-        &lt;th&gt;星期一&lt;/th&gt;
-        &lt;th&gt;星期二&lt;/th&gt;
-        &lt;th&gt;星期三&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;李强&lt;/td&gt;
-        &lt;td&gt;张明&lt;/td&gt;
-        &lt;td&gt;王平&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-<table>
-    <tr>
-        <th rowspan="2">值班人员</th>
-        <th>星期一</th>
-        <th>星期二</th>
-        <th>星期三</th>
-    </tr>
-    <tr>
-        <td>李强</td>
-        <td>张明</td>
-        <td>王平</td>
-    </tr>
-</table>
-
-<p><strong>提示</strong>, 如果想对图片的宽度和高度进行控制, 你也可以通过img标签, 如:</p>
-<img src="http://leanote.com/images/logo/leanote_icon_blue.png" width="50px" />
-
-<h2 id="5-4-脚注"><a href="#5-4-脚注" class="headerlink" title="5.4 脚注"></a>5.4 脚注</h2><p>Leanote[^footnote]来创建一个脚注<br>  [^footnote]: Leanote是一款强大的开源云笔记产品.</p>
-<h2 id="5-5-目录"><a href="#5-5-目录" class="headerlink" title="5.5 目录"></a>5.5 目录</h2><p>通过 <code>[TOC]</code> 在文档中插入目录, 如:</p>
-<p>[TOC]</p>
-<h2 id="5-6-时序图与流程图"><a href="#5-6-时序图与流程图" class="headerlink" title="5.6 时序图与流程图"></a>5.6 时序图与流程图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob, how are you?</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
-
-<p>流程图:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: Start</span><br><span class="line">e&#x3D;&gt;end</span><br><span class="line">op&#x3D;&gt;operation: My Operation</span><br><span class="line">cond&#x3D;&gt;condition: Yes or No?</span><br><span class="line"> </span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>提示:</strong> 更多关于时序图与流程图的语法请参考:</p>
-</blockquote>
-<blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://bramp.github.io/js-sequence-diagrams/">时序图语法</a></li>
-<li><a target="_blank" rel="noopener" href="http://adrai.github.io/flowchart.js">流程图语法</a></li>
-</ul>
-</blockquote>
-<h2 id="5-7-MathJax-公式"><a href="#5-7-MathJax-公式" class="headerlink" title="5.7 MathJax 公式"></a>5.7 MathJax 公式</h2><p>$ 表示行内公式： </p>
-<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
-<p>$$ 表示整行公式：</p>
-<p>$$\sum_{i=1}^n a_i=0$$</p>
-<p>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
-<p>$$\sum^{j-1}<em>{k=0}{\widehat{\gamma}</em>{kj} z_k}$$</p>
-<p>更复杂的公式:<br>$$<br>\begin{eqnarray}<br>\vec\nabla \times (\vec\nabla f) &amp; = &amp; 0  \cdots\cdots梯度场必是无旋场\<br>\vec\nabla \cdot(\vec\nabla \times \vec F) &amp; = &amp; 0\cdots\cdots旋度场必是无散场\<br>\vec\nabla \cdot (\vec\nabla f) &amp; = &amp; {\vec\nabla}^2f\<br>\vec\nabla \times(\vec\nabla \times \vec F) &amp; = &amp; \vec\nabla(\vec\nabla \cdot \vec F) - {\vec\nabla}^2 \vec F\<br>\end{eqnarray}<br>$$</p>
-<p>访问 <a target="_blank" rel="noopener" href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax</a> 参考更多使用方法。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-22 15:37:50" itemprop="dateCreated datePublished" datetime="2020-08-22T15:37:50+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
