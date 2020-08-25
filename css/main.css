@@ -1320,6 +1320,7 @@ pre code {
 }
 .site-author-image {
   border: 1px solid #eee;
+  border-radius: 80px;
   max-width: 120px;
   padding: 2px;
 }
