@@ -104,4 +104,5 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Primer-Fan/Primer-Fan.github.io.git
+  repo: git@github.com:Primer-Fan/Primer-Fan.github.io.git
+  branch: master
