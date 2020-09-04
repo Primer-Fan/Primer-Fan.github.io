@@ -1,7 +1,10 @@
 ---
 title: Manjaro KDE + Win10 双系统安装与基本配置
 date: 2020-08-24 18:03:14
-tags: linux
+tags: 
+  - linux
+  - manjaro
+  - 双系统
 ---
 
 看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）
