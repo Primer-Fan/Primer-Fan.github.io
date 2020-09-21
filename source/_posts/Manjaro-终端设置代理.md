@@ -2,11 +2,11 @@
 title: Manjaro 终端设置代理
 date: 2020-09-09 20:48:35
 tags:
-  - proxy
-  - manjaro
-  - linux
-  - terminal
-  - konsole
+  - Proxy
+  - Manjaro
+  - Linux
+  - Terminal
+  - Konsole
 ---
 
 Manjaro里，konsole里的命令是默认不走代理的，当我们需要下载国外的aur包时，就会很难受，下面介绍如何给终端设置代理

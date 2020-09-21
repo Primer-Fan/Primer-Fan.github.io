@@ -2,8 +2,8 @@
 title: Manjaro KDE + Win10 双系统安装与基本配置
 date: 2020-08-24 18:03:14
 tags: 
-  - linux
-  - manjaro
+  - Linux
+  - Manjaro
   - 双系统
 ---
 
@@ -98,8 +98,9 @@ sudo pacman -S yay
 ```
 - 安装常用软件
 ```
-sudo pacman -S google-chrome netease-cloud-music deepin.com.qq.office
+sudo pacman -S google-chrome netease-cloud-music
 ```
+
 
 # 美化
 

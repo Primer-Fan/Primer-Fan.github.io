@@ -1,7 +1,7 @@
 ---
 title: LeetCode 3.Longest Substring Without Repeating Characters
 date: 2020-09-06 21:37:17
-tags: leetcode
+tags: LeetCode
 ---
 
 求给定字符串的不含重复字符的最长子串的长度
