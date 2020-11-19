@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro KDE + Win10 双系统安装与基本配置">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/manjaro.png">
+<meta property="article:published_time" content="2020-08-24T10:03:14.000Z">
+<meta property="article:modified_time" content="2020-10-30T00:56:48.049Z">
+<meta property="article:author" content="旅人">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Manjaro">
+<meta property="article:tag" content="双系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/manjaro.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Manjaro KDE + Win10 双系统安装与基本配置 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hexo</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4Ubuntu18-04%EF%BC%88%E5%90%8C%E6%97%B6%E9%80%82%E7%94%A8%E4%BA%8EManjaro%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">删除Ubuntu18.04（同时适用于Manjaro）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Manjaro-KDE%E5%8F%8C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">安装Manjaro KDE双系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manjaro%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Manjaro系统设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BE%8E%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">美化</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="旅人"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">旅人</p>
+  <div class="site-description" itemprop="description">No matter how far down the wrong road you have gone, turn back now.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Primer-Fan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Primer-Fan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jiaming.fan@outlook.com" title="E-Mail → mailto:jiaming.fan@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="旅人">
+      <meta itemprop="description" content="No matter how far down the wrong road you have gone, turn back now.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Manjaro KDE + Win10 双系统安装与基本配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-08-24 18:03:14" itemprop="dateCreated datePublished" datetime="2020-08-24T18:03:14+08:00">2020-08-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-10-30 08:56:48" itemprop="dateModified" datetime="2020-10-30T08:56:48+08:00">2020-10-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>看了不少Manjaro的安利，决定把Ubuntu换成Manjaro。（Ps：Pacman确实比apt好用太多了）</p>
+<img src="/2020/08/24/Manjaro-KDE-Win10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/manjaro.png" class="" title="xiaoguotu">
+
+<a id="more"></a>
+
+<h1 id="删除Ubuntu18-04（同时适用于Manjaro）"><a href="#删除Ubuntu18-04（同时适用于Manjaro）" class="headerlink" title="删除Ubuntu18.04（同时适用于Manjaro）"></a>删除Ubuntu18.04（同时适用于Manjaro）</h1><ol>
+<li>在Windows磁盘管理下，删除Ubuntu的所有分区</li>
+<li>删除Ubuntu引导文件<br>不知道自己Ubuntu引导文件在哪的可以用easyUEFI查看一下<ol>
+<li>挂载EFI分区<br>用管理员身份打开命令提示符输入以下命令并回车<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">diskpart</span><br><span class="line">list disk</span><br><span class="line">select disk 0 &#x2F;&#x2F;选择FEI引导分区所在的磁盘</span><br><span class="line">list partition</span><br><span class="line">select partition 1 &#x2F;&#x2F;选择EFI引导分区, 类型为系统的分区</span><br><span class="line">assign letter&#x3D;p &#x2F;&#x2F;为所选分区分配盘符</span><br></pre></td></tr></table></figure></li>
+<li>删除EFI分区<br>下载安装Total Commander, 选中p盘-&gt;以管理员身份-&gt;EFI-&gt;ubuntu, 右键选中这个ubuntu文件夹, 按shift+delete删除<br>回到挂在EFI分区时进入的命令提示符, 在diskpart界面移除p盘<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remove letter&#x3D;p</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="安装Manjaro-KDE双系统"><a href="#安装Manjaro-KDE双系统" class="headerlink" title="安装Manjaro KDE双系统"></a>安装Manjaro KDE双系统</h1><ol>
+<li>制作启动盘<ul>
+<li>从官网下载Manjaro KDE系统镜像 <a target="_blank" rel="noopener" href="https://manjaro.org/download/">传送门</a> 。由于众所周知的原因，官网下载比较慢，可以使用Manjarocn的地址<a target="_blank" rel="noopener" href="https://manjaro.org.cn/category/download-manjaro">传送门</a>，建议选择Minimal</li>
+<li>使用Rufus工具制作启动盘，记得选上gpt+uefi，最新版Rufus可能没法选择，可以使用旧版Rufus，然后点击制作后最好选择DD模式写入</li>
+</ul>
+</li>
+<li>为Manjaro空出分区<ul>
+<li>右键开始图标-&gt;磁盘管理</li>
+<li>选择一个磁盘右键压缩卷，建议腾出足够的空间以供Linux的学习使用</li>
+</ul>
+</li>
+<li>关闭Win10的快速启动<br>右键电源图标-&gt;电源选项-&gt;选择电源按钮的功能-&gt;更改当前不可用设置-&gt;取消勾选启用快速启动</li>
+<li>BIOS设置<br>根据自己电脑型号自行搜索按键进入BIOS，联想是F2，Secure Boot设为Disabled，UEFI选项设为UEFI或Enabled</li>
+<li>安装Manjaro<ol>
+<li>关机插入U盘，开机按快捷键进入BIOS，设置启动优先级，将USB放在第一位，保存退出</li>
+<li>进入Manjaro，双击install Manjaro，选择语言键盘时区等，选择覆盖我们之前腾出的分区，有需求可以手动配置分区，顺着提示安装就好</li>
+<li>注意断开网络连接，因为Manjaro安装好后如果有网络会尝试连接默认的国外软件源，就会出现卡在93%、94%的样子，断掉连接进入系统后设置国内源再更新就好</li>
+</ol>
+</li>
+</ol>
+<h1 id="Manjaro系统设置"><a href="#Manjaro系统设置" class="headerlink" title="Manjaro系统设置"></a>Manjaro系统设置</h1><ul>
+<li>选择国内镜像：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman-mirrors -i -c China -m rank</span><br></pre></td></tr></table></figure></li>
+<li>添加archlinuxcn源<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo nano &#x2F;etc&#x2F;pacman.conf</span><br><span class="line"># 在最后添加下面的代码，不同的镜像可以去镜像官网查看添加方式，这里添加中科大的源</span><br><span class="line">[archlinuxcn]</span><br><span class="line">Server &#x3D; https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;archlinuxcn&#x2F;$arch</span><br></pre></td></tr></table></figure></li>
+<li>更新源与系统<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -Syyu</span><br></pre></td></tr></table></figure></li>
+<li>安装archlinuxcn-keyring<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S archlinuxcn-keyring</span><br></pre></td></tr></table></figure></li>
+<li>使用rtc时间（解决双系统时间不同步问题）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-local-rtc true</span><br></pre></td></tr></table></figure></li>
+<li>安装vim<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S vim</span><br></pre></td></tr></table></figure></li>
+<li>安装输入法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S fcitx-im</span><br><span class="line">sudo pacman -S fcitx-configtool</span><br><span class="line">sudo pacman -S fcitx-sunpinyin # 自己选择，我比较倾向于sunpinyin，也可以选择谷歌或者搜狗</span><br><span class="line"></span><br><span class="line"># 配置，编辑~&#x2F;.xprofile 添加</span><br><span class="line">export GTK_MODULE&#x3D;fcitx</span><br><span class="line">export QT_IM_MODULE&#x3D;fcitx</span><br><span class="line">export XMODIFIERS&#x3D;&quot;@im&#x3D;fcitx&quot;</span><br><span class="line"></span><br><span class="line"># 重启打开fcitx-configtool设置一下就可以用了</span><br></pre></td></tr></table></figure></li>
+<li>安装AUR管理工具<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S yay</span><br></pre></td></tr></table></figure></li>
+<li>安装常用软件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S google-chrome netease-cloud-music</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h1 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h1><p>首先因为未知原因，KDE桌面可能会出现安装应用后搜不到图标，只能通过终端命令运行的bug，解决方案：<br>右键任务栏开始图标-&gt;编辑应用程序-&gt;KDE菜单编辑器菜单栏-&gt;编辑/恢复到系统菜单（KDE版本不同可能略有差别，但是总体流程差不多）</p>
+<ul>
+<li>dock<ol>
+<li>右键自带任务栏，edit panel-&gt;more options-&gt;remove</li>
+<li>命令行安装latte-dock，zoom设为0即可消除抖动，其他的根据自己的喜好配置即可</li>
+</ol>
+</li>
+<li>顶栏<ol>
+<li>添加顶栏，右键桌面，add panel-&gt;application menu bar</li>
+<li>下载小部件，右键桌面，add widgets-&gt;get new widgets-&gt;download new plasma widgets，搜索下载application title，better inline clock，mcos bs better inline bettery，launchpad plasma</li>
+<li>右键顶栏，add widgets，然后根据自己的审美和喜好修改顶栏就ok了，我的个人顺序是左侧applicaiton title，global menu，右侧从右到左simple menu，cos bs better inline bettery，better inline clock，System Tray，System load viewer，最后在中间添加一个Spacer来填充空白区域（在add widgets按钮旁边）launchpad plasma拖动到latte-dock</li>
+</ol>
+</li>
+<li>主题<br>System settings里面可以方便的下载与配置主题</li>
+<li>global theme：breath2</li>
+<li>Plasma style：WhiteSur-dark</li>
+<li>application style<ul>
+<li>application style：breeze</li>
+<li>window decorations：artim-dark</li>
+</ul>
+</li>
+<li>colors：WhiteSur</li>
+<li>icons：mkos-big-sur</li>
+<li>cursors：mcmojave cursors</li>
+<li>workspace vehavior:<ul>
+<li>desktop effects: 勾选magic lamp</li>
+<li>screen edges 与 touch screen 全部选择 no action</li>
+</ul>
+</li>
+<li>window management -&gt; window behavior -&gt; advanced -&gt; window placement 设置为 centered</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Manjaro/" rel="tag"># Manjaro</a>
+              <a href="/tags/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" rel="tag"># 双系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/04/Android-Studio-Gradle-%E5%90%8C%E6%AD%A5%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="next" title="Android Studio Gradle 同步出错问题解决">
+                  Android Studio Gradle 同步出错问题解决 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">旅人</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
